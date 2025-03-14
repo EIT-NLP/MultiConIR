@@ -10,7 +10,7 @@
 
 Welcome to the official repository for **MultiConIR**, a novel benchmark specifically designed to evaluate retrieval and reranking models under multi-condition retrieval scenarios.
 <p align="center">
-  <img src="image/introduction.png" width="75%"/>
+  <img src="image/introduction.png" width="60%"/>
   <p align="center">From single conditional retrieval to multi-conditional scenarios.</p>
 </p>
 
