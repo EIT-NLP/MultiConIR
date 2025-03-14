@@ -1,204 +1,102 @@
 <h1 align="center"><b>MultiConIR: Towards Multi-Conditional Information Retrieval</b></h1>
-<!--
-</div>
-
 <p align="center">
-<a href="https://arxiv.org/pdf/2502.18001">
-  <img src="https://img.shields.io/badge/Arxiv-2502.18001-orange.svg"></a> 
+<a href="https://arxiv.org/pdf/2503.08046">
+  <img src="https://img.shields.io/badge/Arxiv-2503.08046-orange.svg"></a> 
 <a href="https://opensource.org/licenses/Apache-2.0">
   <img src="https://img.shields.io/badge/License-Apache_2.0-green.svg"></a> 
-<a href="https://github.com/EIT-NLP/Distilling-CoT-Reasoning/pulls">
+<a href="https://github.com/EIT-NLP/MultiConIR/pulls">
     <img src="https://img.shields.io/badge/Contributions-welcome-blue.svg?style=flat"></a>
 </p>
 
-## Introduction
-
-Large Language Models (LLMs) excel in reasoning tasks through Chain-of-Thought (CoT) prompting. However, CoT prompting greatly increases computational demands, which has prompted growing interest in distilling CoT capabilities into Small Language Models (SLMs). This study systematically examines the factors influencing CoT distillation,  including the choice of **granularity**, **format** and **teacher model**. 
-
+Welcome to the official repository for **MultiConIR**, a novel benchmark specifically designed to evaluate retrieval and reranking models under multi-condition retrieval scenarios.
 <p align="center">
-  <img src="image/Intro.jpg" width="60%"/>
+  <img src="image/introduciton.jpg" width="60%"/>
   <p align="center">Overview of CoT Distillation. Different teacher models generate CoT supervision with varying levels of granularity and formats to fine-tune the student model.</p>
 </p>
 
+## Overview
 
-Through experiments involving four teacher models and seven student models across seven mathematical and commonsense reasoning datasets, we uncover three key findings: (1) Unlike LLMs, SLMs exhibit a ***non-monotonic*** relationship with granularity, with stronger models benefiting from finer-grained reasoning and weaker models performing better with simpler CoT supervision; (2) CoT format significantly impacts LLMs but has ***minimal*** effect on SLMs, likely due to their reliance on supervised fine-tuning rather than pretraining preferences; (3) Stronger teacher models do ***NOT*** always produce better student models, as diversity and complexity in CoT supervision can outweigh accuracy alone. These findings emphasize the need to tailor CoT strategies to specific student model, offering actionable insights for optimizing CoT distillation in SLMs.
+MultiConIR (Multi-Condition Information Retrieval) is a comprehensive benchmark aimed at evaluating retrieval models in scenarios involving queries with multiple conditions. Unlike traditional single-condition retrieval tasks, MultiConIR reflects realistic and complex search scenarios across five domains:
 
-## Todo
+- Books
+- Movies
+- People
+- Medical Cases
+- Legal Documents
 
-- [x] Release evaluation code on math and commonsense reasoning
-- [x] Release SFT datasets
-- [x] Add instructions for SFT on LLaMA-Factory
+## Features
 
-## Experiments Setup
+MultiConIR focuses on three key evaluation aspects:
 
-We conducted extensive experiments on **four mathematical** reasoning datasets of varying difficulty and **three commonsense** reasoning datasets, using **four teacher models** to distill reasoning skills to **seven student models**. 
+1. **Complexity Robustness**: How effectively retrieval models handle queries with increasing complexity (1 to 10 conditions).
+2. **Relevance Monotonicity**: Assessing if models maintain consistent relevance ranking when conditions progressively increase.
+3. **Query Format Sensitivity**: Evaluating the stability of retrieval performance across instruction-style and descriptive-style queries.
 
-### Datasets
+## Dataset Construction
+<p align="center">
+  <img src="image/pipeline.jpg" width="60%"/>
+  <p align="center">Overview of CoT Distillation. Different teacher models generate CoT supervision with varying levels of granularity and formats to fine-tune the student model.</p>
+</p>
 
-| **Training Dataset**                                         | **Samples (Training)** | **Samples (Testing)** | **Fields**                                                  | **Human Annotation** |
-| ------------------------------------------------------------ | ---------------------- | --------------------- | ----------------------------------------------------------- | -------------------- |
-| [SVAMP](https://huggingface.co/datasets/ChilleD/SVAMP)       | 700                    | 300                   | Arithmetic problems                                         | Yes                  |
-| [GSM8K](https://huggingface.co/datasets/openai/gsm8k)        | 7.4k                   | 1.3k                  | Grade-school math                                           | Yes                  |
-| [AQuA-RAT](https://huggingface.co/datasets/deepmind/aqua_rat) | 6.1k                   | 254                   | Algebraic reasoning, multi-step                             | Yes                  |
-| [Math](https://huggingface.co/datasets/EleutherAI/hendrycks_math) | 1.3k                   | 500                   | Pre-Algebra, Algebra, Counting & Probability, Number Theory | Yes                  |
-| [CommonsenseQA](https://huggingface.co/datasets/tau/commonsense_qa) | 9.7k                   | 1.2k                  | Commonsense knowledge                                       | Yes                  |
-| [OpenBookQA](https://huggingface.co/datasets/allenai/openbookqa) | 4.9k                   | 500                   | Domain-specific knowledge                                   | No                   |
-| [StrategyQA](https://github.com/eladsegal/strategyqa)        | 2k                     | 290                   | Multi-step reasoning                                        | Yes                  |
+MultiConIR utilizes a structured and rigorous pipeline for dataset creation:
 
-### Models
+1. **Condition Sentence Extraction**: Identifies ten key, non-redundant condition sentences from real-world documents using GPT-4o.
+2. **Query Generation**: Creates instruction-style (structured) and descriptive-style (natural language) queries with incremental conditions from 1 to 10.
+3. **Hard Negative Generation**: Produces semantically similar yet subtly distinct negative sentences to challenge retrieval systems.
 
-Teacher models: [GPT-4o](https://openai.com/index/hello-gpt-4o/), [Gemini-1.5-Flash](https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/), [LLaMA 3 70B](https://ai.meta.com/blog/meta-llama-3/)
+## Benchmark Tasks
 
-Student models: [LLaMA 3.2 1B](https://huggingface.co/meta-llama/Llama-3.2-1B), [LLaMA 3.2 3B](https://huggingface.co/meta-llama/Llama-3.2-3B), [Gemma 2B](https://huggingface.co/google/gemma-2b), BLOOM [560M](https://huggingface.co/bigscience/bloom-560m), [1.1B](https://huggingface.co/bigscience/bloom-1b1), [1.7B](https://huggingface.co/bigscience/bloom-1b7), [3B](https://huggingface.co/bigscience/bloom-3b)
+MultiConIR defines three comprehensive evaluation tasks:
 
-## Installation
+- **Complexity Robustness**: Measures how retrieval performance is affected as the number of conditions in queries increases.
+- **Relevance Monotonicity**: Evaluates models’ ability to rank documents consistently based on the number of conditions matched.
+- **Query Format Invariance**: Assesses model sensitivity to different query formulations (instruction-style vs descriptive-style).
 
-Our experiment uses a pipeline of **[LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory/tree/main)** to fine-tune the student models.
+## Performance Highlights
 
-> [!IMPORTANT]
-> Installation is mandatory.
+- **GritLM-7B** demonstrates the highest robustness against increased query complexity.
+- **NV-Embed** shows exceptional adaptability to longer documents, maintaining performance stability better than other models.
+- Reranking models outperform retrievers on simpler queries but experience significant performance drops as query complexity rises.
+
+## Getting Started
+
+### Installation
+
+Clone this repository and install dependencies:
 
 ```bash
-conda create -n llama_factory python==3.10
-conda activate llama_factory
-git clone --depth 1 https://github.com/hiyouga/LLaMA-Factory.git
-cd LLaMA-Factory
-pip install -e ".[torch,metrics]"
-```
-
-For the evaluation environment:
-
-```bash
-conda create -n evaluation python==3.10
-conda activate evaluation
-cd Evaluation
+git clone https://github.com/EIT-NLP/MultiConIR.git
+cd MultiConIR
 pip install -r requirements.txt
 ```
 
-## Training
+### Data and Models
 
-The training data are provided in the `data` folder. Please refer to [data/readme.md](https://github.com/EIT-NLP/Distilling-CoT-Reasoning/blob/main/data/readme.md) to see a list of our datasets. Here's how to set up training:
+Datasets and scripts for evaluation are provided in the repository. Refer to the `datasets` and `models` folders for further details.
 
-1. After cloning the [LLaMA Factory](https://github.com/hiyouga/LLaMA-Factory/tree/main) repository, copy **all contents** from this repository's `data` folder into the `data` folder of the LLaMA Factory directory.
+### Usage
 
-2. We provide training configs generation code `config/yamlgeneration.py`. You can modify `dataset_name`, `gpu_devices`, and `models` and then run the following command to generate configs:
-
-```bash
-cd config
-python yamlgeneration.py
-```
-
-3. To fine-tune the target LLM, run the following command:
-
-```bash
-CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train config/<your_dataset_name>/<models>_<your_dataset_name>.yaml
-```
-
-Or you can run:
-
-```bash
-export CUDA_VISIBLE_DEVICES=0,1,2,3
-
-for config_file in /code/LLaMA-Factory/config/<your_dataset_name>/*.yaml; do
-    llamafactory-cli train "$config_file"
-done
-```
-
-to train on multiple configurations continuously.
-
-> We provide our training configs in `config/examples` for your reference.
-
-## Evaluation
-
-The evaluation code is built from [MAmmoTH](https://github.com/TIGER-AI-Lab/MAmmoTH).
-
-### Single Evaluation Run
-
-To perform a single evaluation, use the following commands:
-
-For Mathematical Reasoning:
-
-```bash
-CUDA_VISIBLE_DEVICES=0 python run_open.py \
-    --model path_to_your_model \
-    --shots 0 \
-    --dataset your_dataset_name \
-    --model_max_length 1024 \
-    --dtype bfloat16 \
-    --form your_model_form
-```
-
-For Commonsense Reasoning:
-
-```bash
-CUDA_VISIBLE_DEVICES=0 python run_reasoning.py \
-    --model path_to_your_model \
-    --dataset your_dataset_name \
-    --output test.json \
-    --model_max_length 640 \
-    --dtype bfloat16 \
-    --form your_model_form
-```
-
-### Batch Evaluation
-
-To run large-scale evaluations across multiple models:
-
-Modify the following parameters in evaluate_models.py or autoevaluate.py:
-
-- num_gpus: Number of GPUs to utilize.
-- output_file: Path to save the evaluation results.
-- model_dir: Directory containing the models to evaluate.
-
-Run the respective evaluation scripts:
-
-```bash
-# For Mathematical Reasoning:
-python evaluate_models.py
-# For Commonsense Reasoning:
-python autoevaluate.py
-```
-
-### Arguments Explanation:
-
-- `model`: Path to your fine-tuned model.
-
-- `shots`: Number of few-shot examples (set to 0 for zero-shot evaluation).
-
-- `dataset`: Name of the dataset (see valid options below).
-
-- `model_max_length`: Maximum sequence length.
-
-- `dtype`: Data type for evaluation.
-
-- `form`: Model template (choose from gemma, llama, alpaca).
-
-`dataset` Options: 
-
-Mathematical Reasoning Datasets: svamp, gsm8k, aqua, math
-
-Commonsense Reasoning Datasets: csqa_test.json, openbookQA_test.json, strategyQA_test.json
-
-## Acknowledgments
-
-The evaluation code is built from [MAmmoTH](https://github.com/TIGER-AI-Lab/MAmmoTH).
+Detailed instructions and examples for running experiments can be found in the `examples` directory.
 
 ## Citation
 
+Please cite our paper if you use MultiConIR in your research:
+
 ```bibtex
-@misc{chen2025unveilingkeyfactorsdistilling,
-      title={Unveiling the Key Factors for Distilling Chain-of-Thought Reasoning}, 
-      author={Xinghao Chen and Zhijing Sun and Wenjin Guo and Miaoran Zhang and Yanjun Chen and Yirong Sun and Hui Su and Yijie Pan and Dietrich Klakow and Wenjie Li and Xiaoyu Shen},
+@misc{lu2025multiconirmulticonditioninformationretrieval,
+      title={MultiConIR: Towards multi-condition Information Retrieval}, 
+      author={Xuan Lu and Sifan Liu and Bochao Yin and Yongqi Li and Xinghao Chen and Hui Su and Yaohui Jin and Wenjun Zeng and Xiaoyu Shen},
       year={2025},
-      eprint={2502.18001},
+      eprint={2503.08046},
       archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2502.18001}, 
+      primaryClass={cs.IR},
+      url={https://arxiv.org/abs/2503.08046}, 
+}
 }
 ```
 
+
 ## Contact
 
-If you have any questions, feel free to raise an issue or contact us at <xing-hao.chen@connect.polyu.hk>.
+For questions or feedback, please reach out to <lux1997@sjtu.edu.cn>.
 
--->
