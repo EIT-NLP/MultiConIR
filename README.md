@@ -55,10 +55,13 @@ MultiConIR defines three comprehensive evaluation tasks:
 - **Query Format Invariance**: Assesses model sensitivity to different query formulations (instruction-style vs descriptive-style).
 
 ## Performance Highlights
-
+- Traditional IR systems deteriorate as query conditions increase, with rerankers suffering more severely.
+- Models demonstrate systematic failure in maintaining relevance monotonicity across conditions.
+- Reranking models outperform retrievers on simpler queries but experience significant performance drops as query complexity rises.
+- Mean pooling focuses on early query conditions while `<EOS>` pooling biases toward later conditions
 - **GritLM-7B** demonstrates the highest robustness against increased query complexity.
 - **NV-Embed** shows exceptional adaptability to longer documents, maintaining performance stability better than other models.
-- Reranking models outperform retrievers on simpler queries but experience significant performance drops as query complexity rises.
+
 
 ## Getting Started
 
