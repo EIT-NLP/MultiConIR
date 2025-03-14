@@ -9,5 +9,84 @@
     <img src="https://img.shields.io/badge/Contributions-welcome-blue.svg?style=flat"></a>
 </p>
 
-## Introduction
+
+# MultiConIR: A Benchmark for Multi-Condition Information Retrieval
+
+Welcome to the official repository for **MultiConIR**, a novel benchmark specifically designed to evaluate retrieval and reranking models under multi-condition retrieval scenarios.
+
+## Overview
+
+MultiConIR (Multi-Condition Information Retrieval) is a comprehensive benchmark aimed at evaluating retrieval models in scenarios involving queries with multiple conditions. Unlike traditional single-condition retrieval tasks, MultiConIR reflects realistic and complex search scenarios across five domains:
+
+- Books
+- Movies
+- People
+- Medical Cases
+- Legal Documents
+
+## Features
+
+MultiConIR focuses on three key evaluation aspects:
+
+1. **Complexity Robustness**: How effectively retrieval models handle queries with increasing complexity (1 to 10 conditions).
+2. **Relevance Monotonicity**: Assessing if models maintain consistent relevance ranking when conditions progressively increase.
+3. **Query Format Sensitivity**: Evaluating the stability of retrieval performance across instruction-style and descriptive-style queries.
+
+## Dataset Construction
+
+MultiConIR utilizes a structured and rigorous pipeline for dataset creation:
+
+1. **Condition Sentence Extraction**: Identifies ten key, non-redundant condition sentences from real-world documents using GPT-4o.
+2. **Query Generation**: Creates instruction-style (structured) and descriptive-style (natural language) queries with incremental conditions from 1 to 10.
+3. **Hard Negative Generation**: Produces semantically similar yet subtly distinct negative sentences to challenge retrieval systems.
+
+## Benchmark Tasks
+
+MultiConIR defines three comprehensive evaluation tasks:
+
+- **Complexity Robustness**: Measures how retrieval performance is affected as the number of conditions in queries increases.
+- **Relevance Monotonicity**: Evaluates models’ ability to rank documents consistently based on the number of conditions matched.
+- **Query Format Invariance**: Assesses model sensitivity to different query formulations (instruction-style vs descriptive-style).
+
+## Performance Highlights
+
+- **GritLM-7B** demonstrates the highest robustness against increased query complexity.
+- **NV-Embed** shows exceptional adaptability to longer documents, maintaining performance stability better than other models.
+- Reranking models outperform retrievers on simpler queries but experience significant performance drops as query complexity rises.
+
+## Getting Started
+
+### Installation
+
+Clone this repository and install dependencies:
+
+```bash
+git clone https://github.com/EIT-NLP/MultiConIR.git
+cd MultiConIR
+pip install -r requirements.txt
+```
+
+### Data and Models
+
+Datasets and scripts for evaluation are provided in the repository. Refer to the `datasets` and `models` folders for further details.
+
+### Usage
+
+Detailed instructions and examples for running experiments can be found in the `examples` directory.
+
+## Citation
+
+Please cite our paper if you use MultiConIR in your research:
+
+```bibtex
+@article{lu2025multiconir,
+  title={MultiConIR: Towards multi-condition Information Retrieval},
+  author={Lu, Xuan and Liu, Sifan and Yin, Bochao and Li, Yongqi and Chen, Xinghao and Su, Hui and Jin, Yaohui and Zeng, Wenjun and Shen, Xiaoyu},
+  year={2025},
+  journal={arXiv preprint arXiv:XXXX.XXXXX}
+}
+```
+
+
+
 
