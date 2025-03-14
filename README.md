@@ -70,20 +70,20 @@ pip install -r requirements.txt
 
 Datasets and scripts for evaluation are provided in the repository. Refer to the `datasets` and `models` folders for further details.
 
-### Usage
-
-Detailed instructions and examples for running experiments can be found in the `examples` directory.
 
 ## Citation
 
 Please cite our paper if you use MultiConIR in your research:
 
 ```bibtex
-@article{lu2025multiconir,
-  title={MultiConIR: Towards multi-condition Information Retrieval},
-  author={Lu, Xuan and Liu, Sifan and Yin, Bochao and Li, Yongqi and Chen, Xinghao and Su, Hui and Jin, Yaohui and Zeng, Wenjun and Shen, Xiaoyu},
-  year={2025},
-  journal={arXiv preprint arXiv:XXXX.XXXXX}
+@misc{lu2025multiconirmulticonditioninformationretrieval,
+      title={MultiConIR: Towards multi-condition Information Retrieval}, 
+      author={Xuan Lu and Sifan Liu and Bochao Yin and Yongqi Li and Xinghao Chen and Hui Su and Yaohui Jin and Wenjun Zeng and Xiaoyu Shen},
+      year={2025},
+      eprint={2503.08046},
+      archivePrefix={arXiv},
+      primaryClass={cs.IR},
+      url={https://arxiv.org/abs/2503.08046}, 
 }
 ```
 
