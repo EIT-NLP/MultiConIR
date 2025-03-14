@@ -10,8 +10,8 @@
 
 Welcome to the official repository for **MultiConIR**, a novel benchmark specifically designed to evaluate retrieval and reranking models under multi-condition retrieval scenarios.
 <p align="center">
-  <img src="image/introduciton.jpg" width="60%"/>
-  <p align="center">Overview of CoT Distillation. Different teacher models generate CoT supervision with varying levels of granularity and formats to fine-tune the student model.</p>
+  <img src="image/introduciton.png" width="60%"/>
+  <p align="center">From single conditional retrieval to multi-conditional scenarios.</p>
 </p>
 
 ## Overview
@@ -34,8 +34,8 @@ MultiConIR focuses on three key evaluation aspects:
 
 ## Dataset Construction
 <p align="center">
-  <img src="image/pipeline.jpg" width="60%"/>
-  <p align="center">Overview of CoT Distillation. Different teacher models generate CoT supervision with varying levels of granularity and formats to fine-tune the student model.</p>
+  <img src="image/pipeline.png" width="60%"/>
+  <p align="center">The construction pipeline of MultiConIR datasets.</p>
 </p>
 
 MultiConIR utilizes a structured and rigorous pipeline for dataset creation:
