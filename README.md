@@ -12,7 +12,7 @@ Welcome to the official repository for **MultiConIR**, a novel benchmark specifi
 
 
 <p align="center">
-  <img src="image/introduction.png" width="60%"/>
+  <img src="image/introduction.png" width="45%"/>
   <p align="center">From single conditional retrieval to multi-conditional scenarios.</p>
 </p>
 
