@@ -8,7 +8,9 @@
     <img src="https://img.shields.io/badge/Contributions-welcome-blue.svg?style=flat"></a>
 </p>
 
-Welcome to the official repository for **MultiConIR**, a novel benchmark specifically designed to evaluate retrieval and reranking models under multi-condition retrieval scenarios.
+Welcome to the official repository for **MultiConIR**, a novel benchmark specifically designed to evaluate retrieval and reranking models under multi-condition retrieval scenarios. MultiConIR is the first benchmark designed to evaluate retrieval models in multi-condition scenarios. Unlike existing datasets that primarily focus on single-condition queries from search engines, MultiConIR captures real-world complexity by incorporating five diverse domains: books, movies, people, medical cases, and legal documents.
+
+
 <p align="center">
   <img src="image/introduction.png" width="60%"/>
   <p align="center">From single conditional retrieval to multi-conditional scenarios.</p>
