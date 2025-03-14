@@ -10,7 +10,6 @@
 </p>
 
 
-# MultiConIR: A Benchmark for Multi-Condition Information Retrieval
 
 Welcome to the official repository for **MultiConIR**, a novel benchmark specifically designed to evaluate retrieval and reranking models under multi-condition retrieval scenarios.
 
