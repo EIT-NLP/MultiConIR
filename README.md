@@ -79,10 +79,6 @@ pip install -r requirements.txt
 
 Datasets and scripts for evaluation are provided in the repository. Refer to the `datasets` and `models` folders for further details.
 
-### Usage
-
-Detailed instructions and examples for running experiments can be found in the `examples` directory.
-
 ## Citation
 
 Please cite our paper if you use MultiConIR in your research:
