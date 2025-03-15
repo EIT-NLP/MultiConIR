@@ -8,7 +8,7 @@
     <img src="https://img.shields.io/badge/Contributions-welcome-blue.svg?style=flat"></a>
 </p>
 
-Welcome to the official repository for **MultiConIR**, a novel benchmark specifically designed to evaluate retrieval and reranking models under multi-condition retrieval scenarios. Unlike existing datasets that primarily focus on single-condition queries from search engines, MultiConIR captures real-world complexity by incorporating five diverse domains: books, movies, people, medical cases, and legal documents.
+Information retrieval (IR) systems have become central to how we access knowledge in the digital age. However, there's a growing gap between users' complex search needs and the capabilities of current IR systems. While modern users frequently ask multi-faceted questions with multiple constraints ("Find me a thriller movie directed by Christopher Nolan that was released after 2010 and features time travel"), most IR systems and evaluation benchmarks are optimized for simpler, single-condition queries. We proposed **MultiConIR**, a novel benchmark specifically designed to evaluate retrieval and reranking models under multi-condition retrieval scenarios. Unlike existing datasets that primarily focus on single-condition queries from search engines, MultiConIR captures real-world complexity by incorporating five diverse domains: books, movies, people, medical cases, and legal documents.
 
 
 <p align="center">
