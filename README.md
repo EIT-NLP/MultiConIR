@@ -62,6 +62,10 @@ MultiConIR defines three comprehensive evaluation tasks:
 - **GritLM-7B** demonstrates the highest robustness against increased query complexity.
 - **NV-Embed** shows exceptional adaptability to longer documents, maintaining performance stability better than other models.
 
+## ✅ TODO List
+✅ Release datasets & evaluation code
+- [ ] **Launch MultiConIR-v2**: We plan to release the MultiConIR-v2 benchmark, extending the original MultiConIR to fully adapt the MTEB (Massive Text Embedding Benchmark) framework.
+
 
 ## Getting Started
 
