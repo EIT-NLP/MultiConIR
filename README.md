@@ -5,16 +5,38 @@
 <a href="https://opensource.org/licenses/Apache-2.0">
   <img src="https://img.shields.io/badge/License-Apache_2.0-green.svg"></a> 
 <a href="https://github.com/EIT-NLP/MultiConIR/pulls">
-    <img src="https://img.shields.io/badge/Contributions-welcome-blue.svg?style=flat"></a>
+  <img src="https://img.shields.io/badge/Contributions-welcome-blue.svg?style=flat"></a>
+<a href="https://huggingface.co/datasets/Lux1997/MultiConIR_v2">
+  <img src="https://img.shields.io/badge/🤗%20Dataset-MultiConIR--v2-yellow"></a>
 </p>
 
-Information retrieval (IR) systems have become central to how we access knowledge in the digital age. However, there's a growing gap between users' complex search needs and the capabilities of current IR systems. While modern users frequently ask multi-faceted questions with multiple constraints ("Find me a thriller movie directed by Christopher Nolan that was released after 2010 and features time travel"), most IR systems and evaluation benchmarks are optimized for simpler, single-condition queries. We proposed **MultiConIR**, a novel benchmark specifically designed to evaluate retrieval and reranking models under multi-condition retrieval scenarios. Unlike existing datasets that primarily focus on single-condition queries from search engines, MultiConIR captures real-world complexity by incorporating five diverse domains: books, movies, people, medical cases, and legal documents.
+---
 
+Information retrieval (IR) systems have become central to how we access knowledge in the digital age. However, there's a growing gap between users' complex search needs and the capabilities of current IR systems. While modern users frequently ask multi-faceted questions with multiple constraints ("Find me a thriller movie directed by Christopher Nolan that was released after 2010 and features time travel"), most IR systems and evaluation benchmarks are optimized for simpler, single-condition queries. We proposed **MultiConIR**, a novel benchmark specifically designed to evaluate retrieval and reranking models under multi-condition retrieval scenarios. Unlike existing datasets that primarily focus on single-condition queries from search engines, MultiConIR captures real-world complexity by incorporating five diverse domains: books, movies, people, medical cases, and legal documents.
 
 <p align="center">
   <img src="image/introduction.png" width="45%"/>
   <p align="center">From single-conditional retrieval to multi-conditional scenarios.</p>
 </p>
+
+---
+
+## 🆕 Updates: MultiConIR-v2
+
+We introduce **MultiConIR-v2**, an enhanced version of the benchmark with improved evaluation capabilities:
+
+- ✅ **Support for NDCG-based evaluation**  
+  MultiConIR-v2 extends beyond pairwise or ranking accuracy metrics by incorporating **NDCG (Normalized Discounted Cumulative Gain)**, enabling more fine-grained evaluation in scenarios with multiple relevant documents.
+
+- 📊 **Better alignment with standard IR benchmarks**  
+  Designed to be more compatible with frameworks such as **MTEB**, facilitating broader comparison across embedding models.
+
+- 📦 **Publicly available dataset**  
+  Easily accessible via Hugging Face:
+
+👉 **[🤗 MultiConIR-v2 Dataset](https://huggingface.co/datasets/Lux1997/MultiConIR_v2)**
+
+---
 
 ## Overview
 
@@ -26,6 +48,8 @@ MultiConIR (Multi-Condition Information Retrieval) is a comprehensive benchmark 
 - Medical Cases
 - Legal Documents
 
+---
+
 ## Features
 
 MultiConIR focuses on three key evaluation aspects:
@@ -34,7 +58,10 @@ MultiConIR focuses on three key evaluation aspects:
 2. **Relevance Monotonicity**: Assessing if models maintain consistent relevance ranking when conditions progressively increase.
 3. **Query Format Sensitivity**: Evaluating the stability of retrieval performance across instruction-style and descriptive-style queries.
 
+---
+
 ## Dataset Construction
+
 <p align="center">
   <img src="image/pipeline.png" width="80%"/>
   <p align="center">The construction pipeline of MultiConIR datasets.</p>
@@ -46,6 +73,8 @@ MultiConIR utilizes a structured and rigorous pipeline for dataset creation:
 2. **Query Generation**: Creates instruction-style (structured) and descriptive-style (natural language) queries with incremental conditions from 1 to 10.
 3. **Hard Negative Generation**: Produces semantically similar yet subtly distinct negative sentences to challenge retrieval systems.
 
+---
+
 ## Benchmark Tasks
 
 MultiConIR defines three comprehensive evaluation tasks:
@@ -54,7 +83,10 @@ MultiConIR defines three comprehensive evaluation tasks:
 - **Relevance Monotonicity**: Evaluates models’ ability to rank documents consistently based on the number of conditions matched.
 - **Query Format Invariance**: Assesses model sensitivity to different query formulations (instruction-style vs descriptive-style).
 
+---
+
 ## Performance Highlights
+
 - Traditional IR systems deteriorate as query conditions increase, with rerankers suffering more severely.
 - Models demonstrate systematic failure in maintaining relevance monotonicity across conditions.
 - Reranking models outperform retrievers on simpler queries but experience significant performance drops as query complexity rises.
@@ -62,9 +94,14 @@ MultiConIR defines three comprehensive evaluation tasks:
 - **GritLM-7B** demonstrates the highest robustness against increased query complexity.
 - **NV-Embed** shows exceptional adaptability to longer documents, maintaining performance stability better than other models.
 
+---
+
 ## ✅ TODO List
+
 - [x] Release datasets & evaluation code
-- [ ] **Launch MultiConIR-v2**: We plan to release the MultiConIR-v2 benchmark, extending the original MultiConIR to fully adapt the MTEB (Massive Text Embedding Benchmark) framework.
+- [x] **Release MultiConIR-v2 (NDCG support)**
+
+---
 
 
 ## Getting Started
